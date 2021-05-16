@@ -1,0 +1,1 @@
+static/models/yolov3_fruits18_train_last.weights filter=lfs diff=lfs merge=lfs -text
