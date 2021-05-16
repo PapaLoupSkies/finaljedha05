@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+
+{%block bodyblock %}
+
+        <!-- ======= Hero Section ======= -->
+          <section id="hero">
+
+            <div class="container">
+              <div class="row d-flex align-items-center"">
+              <div class=" col-lg-6 py-5 py-lg-0 order-2 order-lg-1" data-aos="fade-right">
+                <h1>Votre nouvelle appli pour une alimentation intelligente</h1>
+                <h2>Développée par Elodie & Haoshi </h2>
+                <a href="#about" class="btn-get-started scrollto">Décourir</a>
+              </div>
+              <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left">
+                <img src="{{ url_for('static',filename='img/hero-img.png') }}" class="img-fluid" alt="">
+              </div>
+            </div>
+            </div>
+
+          </section><!-- End Hero -->
+
+
+          <section id="clients" class="clients section-bg">
+            <div class="container">
+
+              <div class="row no-gutters clients-wrap clearfix wow fadeInUp">
+
+                <div class="col-lg-3 col-md-4 col-6">
+                  <div class="client-logo">
+                    <img src="{{ url_for('static',filename='img/clients/tf.png') }}" class="img-fluid" alt="" data-aos="flip-right">
+                  </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6">
+                  <div class="client-logo">
+                    <img src="{{ url_for('static',filename='img/clients/opencv.png') }}" class="img-fluid" alt="" data-aos="flip-right">
+                  </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6">
+                  <div class="client-logo">
+                    <img src="{{ url_for('static',filename='img/clients/flask.png') }}" class="img-fluid" alt="" data-aos="flip-right">
+                  </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6">
+                  <div class="client-logo">
+                    <img src="{{ url_for('static',filename='img/clients/flutter.png') }}" class="img-fluid" alt="" data-aos="flip-right">
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </section><!-- End Clients Section -->
+
+
+          <section id="about" class="about section-bg">
+            <div class="container">
+
+              <div class="row">
+                <div class="image col-xl-5 d-flex align-items-stretch justify-content-center justify-content-lg-start"></div>
+                <div class="col-xl-1"></div>
+                <div class="col-xl-6 pl-0 pl-lg-5 pr-lg-1 d-flex align-items-stretch">
+                  <div class="content d-flex flex-column justify-content-center">
+                    <h4 data-aos="fade-in" data-aos-delay="100"><br></br>Le concept</h4>
+                    <p data-aos="fade-in">
+                      
+Grace à des algorithmes d’intelligence artificielle, KitchenHelper est capable de reconnaitre l’aliment que vous lui présentez devant la caméra.
+                    </p>
+                    <div class="row">
+                      <div class="col-md-12 icon-box" data-aos="fade-up">
+                        <i class="bx bx-receipt"></i>
+                        <h4><a href="#">Garde-manger connecté</a></h4>
+                        <p>Grâce à cette appli, vous pouvez  enregistrer les aliments que vous possédez dans votre cuisine et créer un "Garde-manger connecté".</p>
+                      </div>
+                      <div class="col-md-12 icon-box" data-aos="fade-up">
+                        <i class="bx bx-receipt"></i>
+                        <h4><a href="#">Informations nutritionnelles</a></h4>
+                        <p>L’appli permet également de récupérer les informations nutritionnelles sur chaque produit, ainsi que son impact écologique grâce à la base de données Agribalyse</p>
+                      </div>
+                      <div class="col-md-12 icon-box" data-aos="fade-up">
+                        <i class="bx bx-receipt"></i>
+                        <h4><a href="#">Recettes personnalisées</a></h4>
+                        <p>Enfin, parce que nous considérons que notre mission est de vous aider à vous alimenter correctement, l’application vous propose des recettes en fonction de ce qu’il vous reste dans votre frigo !</p>
+                      </div>
+                    </div>
+                  </div><!-- End .content-->
+                </div>
+              </div>
+
+            </div>
+          </section><!-- End About Section -->
+          <section id="deroulement" class="deroulement section-bg">
+            <div class="container">
+              <div class="section-title">
+                <h2 data-aos="fade-in">Déroulement du projet</h2>
+                <h3 data-aos="fade-in">Idée initiale : créer un modèle de classification d’images de fruits et légumes</h3>
+              </div>
+              <div class="row">
+                  <div class="col-md-12 icon-box" data-aos="fade-up">
+                    <h3><a href="#">1ère étape</a></h3>
+                    <h5>Classification d’images de fruits & légumes avec modèle VGG16</h5>
+                    <p>Bonne performance du modèle</p>
+                  </div>
+
+                  <div class="col-md-12 icon-box" data-aos="fade-up">
+                    <h3><a href="#">2ème étape</a></h3>
+                    <h5>Détection et Classification d’image de fruits & légumes avec YoloV3 et Darknet</h5>
+                    <p>Performance moyenne</p>
+                  </div>
+
+                  <div class="col-md-12 icon-box" data-aos="fade-up">
+                    <h3><a href="#">3ème étape</a></h3>
+                    <h5>Déploiement des modèles sur application mobile et web</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section><!-- End Déroulement du projet Section -->
+          <section id="team" class="team section-bg">
+            <div class="container">
+
+              <div class="section-title">
+                <h2 data-aos="fade-in">Team</h2>
+              </div>
+
+              <div class="row justify-content-center">
+                <div class="col-xl-3 col-lg-3 col-md-3">
+                  <p class="text-right" data-aos="fade-in">Après 8 ans d’expérience dans l’agroalimentaire dans les achats et la prévision de ventes, Elodie a décidé de se reconvertir dans le domaine passionnant de l’Intelligence Artificielle.
+Elle a intégré l’école Jedha afin d’acquérir toutes les connaissances et compétences indispensables au domaine de la Data science.
+                </p>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3">
+                  <div class="member" data-aos="fade-up">
+                    <div class="pic"><img src="{{ url_for('static',filename='img/team/ep.jpg') }}" alt=""></div>
+                    <h4>Élodie Pointeau</h4>
+                    <span>Sales and Forecast Coordinator</span>
+                    <div class="social">
+                      <a href="https://www.linkedin.com/in/pointeau-procurement-marketing/"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-3 col-md-3">
+                  <div class="member" data-aos="fade-up" data-aos-delay="100">
+                    <div class="pic"><img src="{{ url_for('static',filename='img/team/hc.jpg') }}" alt=""></div>
+                    <h4>Haoshi CHEN</h4>
+                    <span>Risk IT Analyste</span>
+                    <div class="social">
+                      <a href="https://www.linkedin.com/in/haoshi-chen-899159b4/"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3">
+                  <p>Haoshi est passionné d’informatique depuis longtemps. Après des études en maths-info et une expérience comme Risk Analyst dans le domaine bancaire, Haoshi a décidé de relever de nouveaux défis dans la Data Sciences. Il a donc intégré Jedha afin de compléter ses compétences dans ce domaine. Son rêve aujourd’hui est de développer sa propre application d’Assistant virtuel.</p>
+                </div>
+
+              </div>
+
+            </div>
+          </section><!-- End Team Section -->
+          <section id="merci" class="merci section-bg">
+            <div class="container">
+
+              <div class="section-title">
+                <h2 data-aos="fade-in" style="color:pink">Remerciements</h2>
+                <br>
+                <h3 data-aos="fade-in">Merci à toute l’équipe Jedha, Antoine, Philéas <br> ainsi que toutes les vidéos Youtube qui nous ont aidés à préparer ce projet !</h3>
+              </div>
+            </div>
+          </section><!-- End Team Section -->
+{% endblock  %}

@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% block titleblock %} YoloV3 Fruits {% endblock  %}
+
+
+
+{%block bodyblock %}
+
+<!-- ======= Features Section ======= -->
+    <section id="features" class="features section-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h2 data-aos="fade-in"> Fruits & Légumes Détecteur Yolo  </h2>
+          <p data-aos="fade-in">Custom Training avec Framework Darknet pour YoloV3 & Tiny YoloV2</p>
+        </div>
+        <br />
+        <div class="row content">
+          <div class="col-md-1 pt-4"></div>
+          <div class="col-md-5" data-aos="fade-right">
+            <img src="{{ url_for('static',filename='img/fruit2.jpg') }}" class="img-fluid" alt="">
+          </div>
+     
+          <div class="col-md-6 " data-aos="fade-left">
+            <h3> Préparation des données</h3>
+            <ul>
+              <li><i class="bi bi-check"></i> Google Open Image Datasets - OIDv4 Toolkit</li>
+              <li><i class="bi bi-check"></i> Image labelé sous le forme Yolo </li>
+              <li><i class="bi bi-check"></i> 18 Catégories de fruits & légumes </li>
+              <li><i class="bi bi-check"></i> 8,4k images -> 10,5k images </li>
+            </ul>
+          </div>
+        </div>
+        <section id="morepreprocess" class="section">
+          <p>
+            <form method="get" action="{{ url_for('static',filename='codepdf/YoloProject_Final.pdf') }}">
+              <button class="btn btn-success btn-lg" type="submit"><i class="bi bi-download"></i> Get NoteBook</button>
+            </form>
+          </p>
+          <div class="collapse" id="collapsePreprocessing">
+            <div class="row content">
+              <div class="overflow-scroll">
+                <div id="myDivPreprocessing" style="height: 600px; width: 1280px;"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="row content">
+          <div class="col-md-5" data-aos="fade-right">
+            <h3>Construction & Évaluation du modèle</h3>
+            <ul>
+              <li><i class="bi bi-check"></i> Utilisation du modèle pré-entrainé Darknet</li>
+              <li><i class="bi bi-check"></i> Convolutions appliquées une seule fois à l'image, divisée en grille</li>
+              <li><i class="bi bi-check"></i> Prédiction de boites de délimitation et probabilité d'objet dans chaque section </li>
+            </ul>
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-6 pt-5" data-aos="fade-left">
+            <div class="table-responsive-sm">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="text-center">N°Img \ mAP(%)</th>
+                    <th class="table-danger text-center">8.4k Images</th>
+                    <th class="table-success text-center">10.5k Images </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th class="table-success text-center">Yolo V3 (web) </th>
+                    <td class="text-center">31.53%</td>
+                    <td class="text-center">43.11%</td>
+                  </tr>
+                  <tr>
+                    <th class="table-danger text-center">Yolo V2 Tiny (mobile) </th>
+                    <td class="text-center"> # </td>
+                    <td class="text-center">16.87%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        
+        
+        <div class="row content">
+          <h3>Performance par catégorie </h3>
+        </div>
+
+        <div class="row content">
+            <div id="yoloeval"></div>
+        </div>
+
+      </div>
+    </section>
+    
+
+{% endblock  %}
+
+{% block javascriptblock %}
+
+
+
+<script>
+var color_train = 'rgb(253, 193, 52)' ;
+var color_val = 'rgb(90,158,38)';
+var config = {responsive: true}
+var trace1 = {
+  x: ['Tomato', 'Cucumber', 'Pomegranate', 'Potato', 'Banana', 'Grapefruit', 'Strawberry', 'Mango', 'Watermelon', 'Cantaloupe', 'Orange', 'Peach', 'Pear', 'Grape', 'Lemon', 'Apple', 'Bell pepper', 'Common fig'],
+  y: [41.17,37.36,60.92,55.59,54.21,27.64,28.13,29.72,64.97,50.77,21.12,35.86,44.75,40.13,50.46,45.37,54.45,33.42],
+  name: 'yolo v3',
+  marker: {color: color_val},
+  type: 'bar'
+};
+
+var trace2 = {
+  x: ['Tomato', 'Cucumber', 'Pomegranate', 'Potato', 'Banana', 'Grapefruit', 'Strawberry', 'Mango', 'Watermelon', 'Cantaloupe', 'Orange', 'Peach', 'Pear', 'Grape', 'Lemon', 'Apple', 'Bell pepper', 'Common fig'],
+  y: [22.16,15.76,13.23,7.92,8.11,14.79,14.61,9.72,31.70,20.03,6.81,16.51,27.24,15.48,29.44,16.90,19.65,13.52],
+  name: 'tiny yolo v2',
+  marker: {color: 'pink'},
+  type: 'bar'
+};
+
+var data = [trace1, trace2];
+
+var layout = {
+  title: 'YoloV3 vs Tiny YoloV2 (10.5k images)',
+  xaxis: {tickfont: {
+      size: 14,
+      color: 'rgb(107, 107, 107)'
+    }},
+  yaxis: {
+    title: 'mAP(%)',
+    titlefont: {
+      size: 16,
+      color: 'rgb(107, 107, 107)'
+    },
+    tickfont: {
+      size: 14,
+      color: 'rgb(107, 107, 107)'
+    }
+  },
+  legend: {
+    x: 0,
+    y: 1.0,
+    bgcolor: 'rgba(255, 255, 255, 0)',
+    bordercolor: 'rgba(255, 255, 255, 0)'
+  },
+  barmode: 'group',
+  bargap: 0.15,
+  bargroupgap: 0.1
+};
+
+Plotly.newPlot('yoloeval', data, layout, config);
+</script>
+{% endblock  %}

@@ -1,0 +1,231 @@
+{% extends 'base.html' %}
+{% block titleblock %} YoloV3 Fruits {% endblock  %}
+
+
+
+{%block bodyblock %}
+
+<!-- ======= Features Section ======= -->
+    <section id="contact" class="features section-bg">
+      	<div class="container">
+
+	        <div class="section-title">
+	        	<h2 data-aos="fade-in"> Testez notre Détecteur Yolo  </h2>
+	        	<p data-aos="fade-in">Amusez-vous !</p>
+	        </div>
+	        <br />
+	       	<div class="row content">
+	          <div class="">
+	            <div class="file-upload">
+	              
+	              <div class="image-upload-wrap">
+	                <input id="imageinput" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+	                <div class="drag-text">
+	                  <h3 style="color:pink">Drag and drop a file or select add Image</h3>
+	                </div>
+	              </div>
+	              <div class="file-upload-content">
+	                <img class="file-upload-image" id="imagebox" src="#" alt="your image" />
+	                <div class="image-title-wrap">
+	                  <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+	                </div>
+	              </div>
+	              <div class="row justify-content-md-center">
+	        		<div class="col-8">
+				    	<button class="file-upload-btn" type="button" id="sendbutton" style="margin-top: 10px">Send</button>
+				    </div>
+	        	</div>
+	            </div>
+	          </div>
+	        </div>
+	        <hr>
+	        <div class="container">
+	        	<div class="row justify-content-md-center">
+	        		<div class="col-8">
+				    	<div class="accordion accordion-flush" id="accordionFlushExample"></div>
+				    </div>
+	        	</div>
+	        </div>
+		    
+	    </div>
+
+	</section>
+	 <section id="pricing" class="pricing section-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h2 data-aos="fade-in">Pistes d'amélioration</h2>
+        </div>
+
+        <div class="row no-gutters align-items-center">
+
+          <div class="col-lg-5 box" data-aos="zoom-in">
+            <h3 style="color: pink">Les modèles</h3>
+            <ul>
+              <li><i class="bx bx-check"></i> VGG16 -> performante</li>
+              <li><i class="bx bx-check"></i> Tiny YoloV2 -> Augementer nombre d'images</li>
+              <li><i class="bx bx-check"></i> YoloV3 -> Augementer nombre d'images</li>
+              <li><i class="bx bx-check"></i> Ajuster les hyperparamètres</li>
+            </ul>
+          </div>
+          <div class="col-lg-2"></div>
+          <div class="col-lg-5 box" data-aos="zoom-in">
+            
+            <h3 style="color: pink">L'application</h3>
+            <ul>
+              <li><i class="bx bx-check"></i> Augmenter nombre aliments</li>
+              <li><i class="bx bx-check"></i> Sauvegarder aliments scannés</li>
+              <li><i class="bx bx-check"></i> Lien vers API Agribalyse pour Nutriscore et Ecoscore</li>
+              <li><i class="bx bx-check"></i> Proposer recettes de cuisines personnalisées</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+	
+{% endblock  %}
+
+{% block javascriptblock %}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{{ url_for('static',filename='js/scores.js') }}"></script>
+<script type="text/javascript">
+	function getScores(fruitname) {
+		fmessage = 'Not Found'
+		for (var i = 0; i < scores.length; i++){
+			
+			if (scores[i].name == fruitname ){
+				score_obj = scores[i].nutritions
+				//message =  Object.keys(score_obj).map((key) => [String(key), score_obj[key]]);
+				message = score_obj
+			}else {
+				message = 'Not Found'
+			}
+
+			if(message != 'Not Found') {
+				fmessage = message
+			}
+		}
+
+		return fmessage
+  	}	
+
+  	//getScores('Apple')
+</script>
+<script>
+window.onload = () => {
+	$('#sendbutton').click(() => {
+	    imagebox = $('.file-upload-image')
+	    input = $('#imageinput')[0]
+	    if(input.files && input.files[0])
+	    {
+		    let formData = new FormData();
+		    formData.append('image' , input.files[0]);
+		    $.ajax({
+		        url: "/detect", // fix this to your liking
+		        type:"POST",
+		        data: formData,
+		        cache: false,
+		        processData:false,
+		        contentType:false,
+		        crossDomain:true,
+		        headers: { 'Access-Control-Allow-Origin': '*' }, 
+		        error: function(data){
+		          console.log("upload error" , data);
+		          console.log(data.getAllResponseHeaders());
+		        },
+	        	success: function(data){
+	        		var score = $("#accordionFlushExample")
+	  				
+	          		//console.log(data);
+			        bytestring = data['status']
+			        labels = new Set(data['labelnames'])
+
+			        image = bytestring.split('\'')[1]
+			        imagebox.attr('src' , 'data:image/jpeg;base64,'+image)
+
+
+	          		labels.forEach(function(item, index, array) {
+			        	item = item.trim()
+			            yoloscore = getScores(item)
+
+						if (yoloscore == 'Not Found') {
+							var acoordionbody = '<code> Info non dispo</code>'
+						}else{
+							var acoordionbody = '<ul class="list-group">'+
+												  '<li class="list-group-item d-flex justify-content-between align-items-center">calories<span class="badge bg-info rounded-pill">'+yoloscore['calories']+'</span></li>'+
+												  '<li class="list-group-item d-flex justify-content-between align-items-center">carbohydrates<span class="badge bg-info rounded-pill">'+yoloscore['carbohydrates']+'</span></li>'+
+												  '<li class="list-group-item d-flex justify-content-between align-items-center">fat<span class="badge bg-info rounded-pill">'+yoloscore['fat']+'</span></li>'+
+												  '<li class="list-group-item d-flex justify-content-between align-items-center">protein<span class="badge bg-info rounded-pill">'+yoloscore['protein']+'</span></li>'+
+												  '<li class="list-group-item d-flex justify-content-between align-items-center">sugar<span class="badge bg-info rounded-pill">'+yoloscore['sugar']+'</span></li>'+
+												'</ul>'
+						}
+			            var bodyString = '<div class="accordion-item">'
+			            bodyString += 
+						    '<h2 class="accordion-header" id="flush-heading'+item+'">' +
+						      '<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse'+ item +'" aria-expanded="false" aria-controls="flush-collapse'+item+'">' + 
+						        item + 
+						      '</button>' +
+						    '</h2>' +
+						    '<div id="flush-collapse'+item+'" class="accordion-collapse collapse" aria-labelledby="flush-heading'+item+'" data-bs-parent="#accordionFlushExample">'+
+						      	'<div class="accordion-body">'+
+						      		acoordionbody +
+						      	'</div>' +
+						    '</div>'+
+						  '</div>'
+			            score.append(bodyString);
+	          		})
+	          		score += ('</div>');
+	        	}
+	      	});
+	    }
+
+
+  	});
+};
+
+
+</script>
+
+
+<script>
+function readURL(input) {
+  if (input.files && input.files[0]) {
+
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('.image-upload-wrap').hide();
+
+      $('.file-upload-image').attr('src', e.target.result);
+      $('.file-upload-image').height(500);
+      $('.file-upload-image').width(800);
+      $('.file-upload-content').show();
+      $('.image-title').html(input.files[0].name);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+
+  } else {
+    removeUpload();
+  }
+}
+
+function removeUpload() {
+  $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+  $('.file-upload-content').hide();
+  $('.image-upload-wrap').show();
+  $( ".accordion-item" ).remove();
+}
+$('.image-upload-wrap').bind('dragover', function () {
+    $('.image-upload-wrap').addClass('image-dropping');
+  });
+  $('.image-upload-wrap').bind('dragleave', function () {
+    $('.image-upload-wrap').removeClass('image-dropping');
+});
+</script>
+
+{% endblock  %}

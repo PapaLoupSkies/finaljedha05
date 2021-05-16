@@ -1,0 +1,777 @@
+{% extends 'base.html' %}
+{% block titleblock %}Fruits 360 {% endblock  %}
+
+
+
+{%block bodyblock %}
+
+<!-- ======= Features Section ======= -->
+    <section id="features" class="features section-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h2 data-aos="fade-in"> Fruits 360 </h2>
+          <p data-aos="fade-in">Classification de Fruits & Légumes avec Transfer Learning</p>
+        </div>
+
+        <div class="row content">
+          <div class="col-md-5 pt-5" data-aos="fade-right">
+            <img src="{{ url_for('static',filename='img/fruit0.png') }}" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-6 pt-4" data-aos="fade-left">
+            <h3>Préparation des données</h3>
+            <p class="fst-italic">
+            </p>
+            <ul>
+              <li><i class="bi bi-check"></i> Kaggle Fruit-360 – 90k images</li>
+              <li><i class="bi bi-check"></i> 67 Familles de Fruits & Légumes </li>
+              <li><i class="bi bi-check"></i> 131 Catégories pour l'entrainement</li>
+              <li><i class="bi bi-check"></i> Data augmentation</li>
+              <li><i class="bi bi-check"></i> Divers traitements sur les images</li>
+            </ul>
+          </div>
+        </div>
+        <section id="morepreprocess" class="section">
+          <p>
+            <a class="btn btn-outline-warning btn-lg" data-bs-toggle="collapse" href="#collapsePreprocessing" role="button" aria-expanded="false" aria-controls="collapsePreprocessing">
+              Plus de détails
+            </a>
+          </p>
+          <div class="collapse" id="collapsePreprocessing">
+            <div class="row content">
+              <div class="overflow-scroll">
+                <div id="myDivPreprocessing" style="height: 600px; width: 1280px;"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="row content">
+          <div class="col-md-7 order-1 order-md-2" data-aos="fade-left">
+            <img src="{{ url_for('static',filename='img/VGG 16_model.png') }}" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-5 pt-5 order-2 order-md-1" data-aos="fade-right">
+            <h3>Construction du Modèle</h3>
+            <p class="fst-italic">
+            <ul>
+              <li><i class="bi bi-check"></i> VGG16 - CNN - Transfer learning</li>
+              <li><i class="bi bi-check"></i> Image passée à travers divers filtres qui vont en extraire les infos les plus importantes pour prédire le type de fruit ou légume </li>
+            </ul>
+            </p>
+          </div>
+        </div>
+        <section id="4moduels" class="section">
+          <p>
+            <a class="btn btn-outline-warning btn-lg" data-bs-toggle="collapse" href="#collapseModules4" role="button" aria-expanded="false" aria-controls="collapseModules4">
+              More about Others Moduels
+            </a>
+          </p>
+          <div class="collapse" id="collapseModules4">
+            <div class="">
+              <div class="row content">
+                <div class="col-md-6" data-aos="fade-right">
+                  <div id="myDiv3" class="responsive-plot"></div>
+                </div>
+                <div class="col-md-6" data-aos="fade-right">
+                  <div id="myDiv4" class="responsive-plot"></div>
+                </div>
+              </div>
+              <div class="row content">
+                <div class="col-md-6" data-aos="fade-right">
+                  <div id="myDiv5" class="responsive-plot"></div>
+                </div>
+                <div class="col-md-6" data-aos="fade-right">
+                  <div id="myDiv6" class="responsive-plot"></div>
+                </div>
+              </div>
+              <div class="row content">
+                <div class="col-md-6" data-aos="fade-right">
+                  <div id="myDiv7" class="responsive-plot"></div>
+                </div>
+                <div class="col-md-6" data-aos="fade-right">
+                  <div id="myDiv8" class="responsive-plot"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="row content">
+          <div class="col-md-10" data-aos="fade-left">
+            <h3>Performance du Modèle </h3>
+          </div>
+
+          <div class="col-md-2" data-aos="fade-right">
+            <form method="get" action="{{ url_for('static',filename='codepdf/Fruit classification_FINAL.pdf') }}">
+              <button class="btn btn-success btn-lg" type="submit"><i class="bi bi-download"></i> Get NoteBook</button>
+            </form>
+          </div>
+
+        </div>
+        <div class="row content">
+
+          <div class="col-md-6" data-aos="fade-right">
+            <div id="myDiv" class="responsive-plot"></div>
+          </div>
+          <div class="col-md-6" data-aos="fade-right">
+            <div id="myDiv2" class="responsive-plot"></div>
+          </div>
+          
+        </div>
+
+        
+        
+        <div class="row content">
+          <h3>Évaluation du modèle</h3>
+          <ul>
+            <li><h3 style="color:pink"><i class="bi bi-check"></i> 96.7% de précision !</li></h3>
+          </ul>
+          <section id="matrixconfusion" class="section">
+            <p>
+              <a class="btn btn-outline-warning btn-lg" data-bs-toggle="collapse" href="#collapseMatrix" role="button" aria-expanded="false" aria-controls="collapseMatrix">
+                Matrice de Confusion
+              </a>
+            </p>
+            <div class="collapse" id="collapseMatrix">
+              <div class="row content">
+                <div class="overflow-scroll">
+                  <div id="myDivmatrix" style="height: 1200px; width: 1200px;"></div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+   
+        <!--
+        <section id="contact" class="contact section-bg">
+          <div class="row content">
+            <div class="section-title">
+              <h2>Training History</h2>
+            </div>
+          </div>
+        </section>
+        -->
+      </div>
+    </section>
+
+
+{% endblock  %}
+
+{% block javascriptblock %}
+
+<script>
+  var iv3_loss = JSON.parse("{{ iv3['loss'] }}");
+  var iv3_val_loss = JSON.parse("{{ iv3['val_loss'] }}");
+  var iv3_accuracy = JSON.parse("{{ iv3['accuracy'] }}");
+  var iv3_val_accuracy = JSON.parse("{{ iv3['val_accuracy'] }}");
+
+  var res_loss = JSON.parse("{{ res['loss'] }}");
+  var res_val_loss = JSON.parse("{{ res['val_loss'] }}");
+  var res_accuracy = JSON.parse("{{ res['accuracy'] }}");
+  var res_val_accuracy = JSON.parse("{{ res['val_accuracy'] }}");
+
+  var xcep_loss = JSON.parse("{{ xcep['loss'] }}");
+  var xcep_val_loss = JSON.parse("{{ xcep['val_loss'] }}");
+  var xcep_accuracy = JSON.parse("{{ xcep['accuracy'] }}");
+  var xcep_val_accuracy = JSON.parse("{{ xcep['val_accuracy'] }}");
+
+  var vgg_loss = JSON.parse("{{ vgg['loss'] }}");
+  var vgg_val_loss = JSON.parse("{{ vgg['val_loss'] }}");
+  var vgg_accuracy = JSON.parse("{{ vgg['accuracy'] }}");
+  var vgg_val_accuracy = JSON.parse("{{ vgg['val_accuracy'] }}");
+
+  var epochs = JSON.parse('{{ epochs }}');
+  var classes = JSON.parse('{{ classes|safe }}');
+  var color_train = 'rgb(253, 193, 52)' ;
+  var color_val = 'rgb(90,158,38)';
+  var config = {responsive: true}
+
+</script>
+
+<script>
+var matrix = [
+    {
+      z: JSON.parse("{{ matrix }}"),
+      x: classes,
+      y: classes,
+      hoverongaps: false,
+      showscale: false,
+      type: 'heatmap',
+      colorscale: 'Greens',
+    }
+  ];
+
+
+var layoutmatrix = {
+  autosize: true,
+  margin: {
+    l: 120,
+    r: 120,
+
+    pad: 10
+  },
+  font: {size: 8}
+};
+
+matrixplot = Plotly.newPlot('myDivmatrix', matrix, layoutmatrix);
+
+</script>
+<script>
+
+var trace2 = {
+  x: classes,
+  y: JSON.parse('{{ pcessv | safe }}'),
+  type: 'bar',
+  marker: {
+    color: 'pink',
+  },
+
+};
+
+var data = [trace2];
+
+var layout = {
+  title: 'Count by Categories',
+  xaxis: {
+    tickangle: -45
+  },
+  font: {
+      family: 'Courier New, monospace',
+      size: 8
+    },
+  barmode: 'group'
+};
+
+
+Plotly.newPlot('myDivPreprocessing', data, layout);
+</script>
+
+<script>
+trace1 = {
+  fill: 'none', 
+  mode: 'lines', 
+  name: 'train', 
+  type: 'scatter', 
+  x: epochs, 
+  y: vgg_accuracy,
+  line: {
+    color: color_train,
+    width: 3
+  }
+};
+trace2 = {
+  fill: 'none', 
+  mode: 'lines', 
+  name: 'val', 
+  type: 'scatter', 
+  x: epochs, 
+  y: vgg_val_accuracy,
+  line: {
+    color: '#464196',
+    width: 3
+  }
+};
+data = [trace1, trace2];
+layout = {
+  title: {
+    text:'VGG 16',
+    font: {
+      family: 'Courier New, monospace',
+      size: 20
+    },
+    xref: 'paper',
+    x: 0.05,
+  }, 
+  xaxis: {
+    title: 'epochs', 
+    autorange: true
+  }, 
+  yaxis: {
+    title: 'accuracy', 
+    autorange: true,
+    range: [0,3]
+  }, 
+  showlegend: true,
+  legend: {
+    orientation: "h",
+    x: 1,
+    xanchor: 'right',
+    yanchor: "bottom",
+    y: 1.02
+  },
+  autosize: true, 
+  dragmode: 'pan'
+};
+Plotly.plot('myDiv', {
+  data,
+  layout,
+  config
+
+});
+
+</script>
+
+
+<script>
+trace1 = {
+  fill: 'none', 
+  mode: 'lines', 
+  name: 'train', 
+  type: 'scatter', 
+  x: epochs, 
+  y: vgg_loss,
+  line: {
+    color: 'pink',
+    width: 3
+  }
+};
+trace2 = {
+  fill: 'none', 
+  mode: 'lines', 
+  name: 'val', 
+  type: 'scatter', 
+  x: epochs, 
+  y: vgg_val_loss,
+  line: {
+    color: color_val,
+    width: 3
+  }
+};
+data = [trace1, trace2];
+layout = {
+  title: {
+    text:'VGG 16',
+    font: {
+      family: 'Courier New, monospace',
+      size: 20
+    },
+    xref: 'paper',
+    x: 0.05,
+  }, 
+  xaxis: {
+    title: 'epochs', 
+    autorange: true
+  }, 
+  yaxis: {
+    title: 'losses', 
+    autorange: false,
+    range: [0,1]
+  }, 
+  showlegend: true,
+  legend: {
+    orientation: "h",
+    x: 1,
+    xanchor: 'right',
+    yanchor: "bottom",
+    y: 1.02
+  },
+  autosize: true, 
+  dragmode: 'pan'
+};
+Plotly.plot('myDiv2', {
+  data,
+  layout,
+  config
+});
+
+</script>
+
+
+
+
+<script>
+trace1 = {
+  fill: 'none', 
+  mode: 'lines', 
+  name: 'train', 
+  type: 'scatter', 
+  x: epochs, 
+  y: iv3_accuracy,
+  line: {
+    color: color_train,
+    width: 3
+  }
+};
+trace2 = {
+  fill: 'none', 
+  mode: 'lines', 
+  name: 'val', 
+  type: 'scatter', 
+  x: epochs, 
+  y: iv3_val_accuracy,
+  line: {
+    color: '#464196',
+    width: 3
+  }
+};
+data = [trace1, trace2];
+layout = {
+  title: {
+    text:'Inception V3',
+    font: {
+      family: 'Courier New, monospace',
+      size: 20
+    },
+    xref: 'paper',
+    x: 0.05,
+  }, 
+  xaxis: {
+    title: 'epochs', 
+    autorange: true
+  }, 
+  yaxis: {
+    title: 'accuracy', 
+    autorange: true,
+    range: [0,1]
+  }, 
+  showlegend: true,
+  legend: {
+    orientation: "h",
+    x: 1,
+    xanchor: 'right',
+    yanchor: "bottom",
+    y: 1.02
+  },
+  autosize: true, 
+  dragmode: 'pan'
+};
+Plotly.plot('myDiv3', {
+  data,
+  layout,
+  config
+
+});
+
+</script>
+
+
+<script>
+trace1 = {
+  fill: 'none', 
+  mode: 'lines', 
+  name: 'train', 
+  type: 'scatter', 
+  x: epochs, 
+  y: iv3_loss,
+  line: {
+    color: 'pink',
+    width: 3
+  }
+};
+trace2 = {
+  fill: 'none', 
+  mode: 'lines', 
+  name: 'val', 
+  type: 'scatter', 
+  x: epochs, 
+  y: iv3_val_loss,
+  line: {
+    color: color_val,
+    width: 3
+  }
+};
+data = [trace1, trace2];
+layout = {
+  title: {
+    text:'Inception V3',
+    font: {
+      family: 'Courier New, monospace',
+      size: 20
+    },
+    xref: 'paper',
+    x: 0.05,
+  }, 
+  xaxis: {
+    title: 'epochs', 
+    autorange: true
+  }, 
+  yaxis: {
+    title: 'losses', 
+    autorange: false,
+    range: [0,1]
+  }, 
+  showlegend: true,
+  legend: {
+    orientation: "h",
+    x: 1,
+    xanchor: 'right',
+    yanchor: "bottom",
+    y: 1.02
+  },
+  autosize: true, 
+  dragmode: 'pan'
+};
+Plotly.plot('myDiv4', {
+  data,
+  layout,
+  config
+});
+
+</script>
+
+
+
+
+
+<script>
+trace1 = {
+  fill: 'none', 
+  mode: 'lines', 
+  name: 'train', 
+  type: 'scatter', 
+  x: epochs, 
+  y: res_accuracy,
+  line: {
+    color: color_train,
+    width: 3
+  }
+};
+trace2 = {
+  fill: 'none', 
+  mode: 'lines', 
+  name: 'val', 
+  type: 'scatter', 
+  x: epochs, 
+  y: res_val_accuracy,
+  line: {
+    color: '#464196',
+    width: 3
+  }
+};
+data = [trace1, trace2];
+layout = {
+  title: {
+    text:'Resnet 101',
+    font: {
+      family: 'Courier New, monospace',
+      size: 20
+    },
+    xref: 'paper',
+    x: 0.05,
+  }, 
+  xaxis: {
+    title: 'epochs', 
+    autorange: true
+  }, 
+  yaxis: {
+    title: 'accuracy', 
+    autorange: true,
+    range: [0,5]
+  }, 
+  showlegend: true,
+  legend: {
+    orientation: "h",
+    x: 1,
+    xanchor: 'right',
+    yanchor: "bottom",
+    y: 1.02
+  },
+  autosize: true, 
+  dragmode: 'pan'
+};
+Plotly.plot('myDiv5', {
+  data,
+  layout,
+  config
+
+});
+
+</script>
+
+
+<script>
+trace1 = {
+  fill: 'none', 
+  mode: 'lines', 
+  name: 'train', 
+  type: 'scatter', 
+  x: epochs, 
+  y: res_loss,
+  line: {
+    color: 'pink',
+    width: 3
+  }
+};
+trace2 = {
+  fill: 'none', 
+  mode: 'lines', 
+  name: 'val', 
+  type: 'scatter', 
+  x: epochs, 
+  y: res_val_loss,
+  line: {
+    color: color_val,
+    width: 3
+  }
+};
+data = [trace1, trace2];
+layout = {
+  title: {
+    text:'Resnet 101',
+    font: {
+      family: 'Courier New, monospace',
+      size: 20
+    },
+    xref: 'paper',
+    x: 0.05,
+  }, 
+  xaxis: {
+    title: 'epochs', 
+    autorange: true
+  }, 
+  yaxis: {
+    title: 'losses', 
+    autorange: false,
+    range: [0,5]
+  }, 
+  showlegend: true,
+  legend: {
+    orientation: "h",
+    x: 1,
+    xanchor: 'right',
+    yanchor: "bottom",
+    y: 1.02
+  },
+  autosize: true, 
+  dragmode: 'pan'
+};
+Plotly.plot('myDiv6', {
+  data,
+  layout,
+  config
+});
+
+</script>
+
+
+<script>
+trace1 = {
+  fill: 'none', 
+  mode: 'lines', 
+  name: 'train', 
+  type: 'scatter', 
+  x: epochs, 
+  y: xcep_accuracy,
+  line: {
+    color: color_train,
+    width: 3
+  }
+};
+trace2 = {
+  fill: 'none', 
+  mode: 'lines', 
+  name: 'val', 
+  type: 'scatter', 
+  x: epochs, 
+  y: xcep_val_accuracy,
+  line: {
+    color: '#464196',
+    width: 3
+  }
+};
+data = [trace1, trace2];
+layout = {
+  title: {
+    text:'Xception',
+    font: {
+      family: 'Courier New, monospace',
+      size: 20
+    },
+    xref: 'paper',
+    x: 0.05,
+  }, 
+  xaxis: {
+    title: 'epochs', 
+    autorange: true
+  }, 
+  yaxis: {
+    title: 'accuracy', 
+    autorange: true,
+    range: [0,4]
+  }, 
+  showlegend: true,
+  legend: {
+    orientation: "h",
+    x: 1,
+    xanchor: 'right',
+    yanchor: "bottom",
+    y: 1.02
+  },
+  autosize: true, 
+  dragmode: 'pan'
+};
+Plotly.plot('myDiv7', {
+  data,
+  layout,
+  config
+
+});
+
+</script>
+
+
+<script>
+trace1 = {
+  fill: 'none', 
+  mode: 'lines', 
+  name: 'train', 
+  type: 'scatter', 
+  x: epochs, 
+  y: xcep_loss,
+  line: {
+    color: 'pink',
+    width: 3
+  }
+};
+trace2 = {
+  fill: 'none', 
+  mode: 'lines', 
+  name: 'val', 
+  type: 'scatter', 
+  x: epochs, 
+  y: xcep_val_loss,
+  line: {
+    color: color_val,
+    width: 3
+  }
+};
+data = [trace1, trace2];
+layout = {
+  title: {
+    text:'Xception',
+    font: {
+      family: 'Courier New, monospace',
+      size: 20
+    },
+    xref: 'paper',
+    x: 0.05,
+  }, 
+  xaxis: {
+    title: 'epochs', 
+    autorange: true
+  }, 
+  yaxis: {
+    title: 'losses', 
+    autorange: false,
+    range: [0,4]
+  }, 
+  showlegend: true,
+  legend: {
+    orientation: "h",
+    x: 1,
+    xanchor: 'right',
+    yanchor: "bottom",
+    y: 1.02
+  },
+  autosize: true, 
+  dragmode: 'pan'
+};
+Plotly.plot('myDiv8', {
+  data,
+  layout,
+  config
+});
+
+</script>
+{% endblock  %}
