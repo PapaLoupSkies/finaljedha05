@@ -10,6 +10,7 @@ ADD . /app
 # Install the dependencies
 RUN pip install --upgrade pip setuptools wheel
 RUN pip install -r requirements.txt
+RUN pip install opencv-python
 
 # run the command to start uWSGI
 CMD ["uwsgi", "app.ini"]
