@@ -1,4 +1,4 @@
-Project: Fruit and vegetables image Detection and Classification with VGG16 and Yolo V3
+Project: Fruit and vegetables image Classification with VGG16 and Detection with Yolo V3
 
 
   #### Model 1 - Fruit and vegetables image Classification with Transfer Learning using VGG16
