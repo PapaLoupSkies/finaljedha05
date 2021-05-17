@@ -20,14 +20,15 @@ Project: Fruit and vegetables image Classification with VGG16 and Detection with
     We created this model using Darknet with YoloV3.
  
  #### Architecture of our project :
-   There are two containers managed by docker-compose:
-        1. Container with Flask with uWSGI,  so all of python libraries will be build in this container.
-        2. Container with NGINX -> our web server for our AWS virtuel machine
+   There are two docker container images managed by docker-compose:
+        1. Docker Image with Flask & uWSGI,  so all of python libraries will be build in this image.
+        2. Docker Image with NGINX -> our web server for our AWS virtuel machine
    How to use ? 
         Download this folder into your PC or Upload it on your Cloud virtuel machine ,
           in unix, run :  cd server -> chmod +x init.sh -> ./init.sh
+          
 
  
-  ### Authors:
+ #### Authors:
   Haoshi Chen
   Elodie Pointeau
